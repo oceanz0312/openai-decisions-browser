@@ -1,0 +1,83 @@
+{
+  "name": "openai-decisions-browser",
+  "version": "0.1.0",
+  "description": "A Decisions-driven browser agent: give it a task and a start URL; typed Choice actions, stop/stuck safety gates, the final page, an auditable step trace, and a screenshot. MCP server, CLI, or library.",
+  "type": "module",
+  "license": "MIT",
+  "author": "OpenAI Decisions Browser contributors",
+  "contributors": ["Joey Kudish (original jev-browser architecture)"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oceanz0312/openai-decisions-browser.git"
+  },
+  "homepage": "https://github.com/oceanz0312/openai-decisions-browser#readme",
+  "bugs": { "url": "https://github.com/oceanz0312/openai-decisions-browser/issues" },
+  "bin": {
+    "openai-decisions-browser": "dist/index.js"
+  },
+  "main": "./dist/library.js",
+  "types": "./dist/library.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/library.d.ts",
+      "default": "./dist/library.js"
+    },
+    "./dist/navigate.js": {
+      "types": "./dist/navigate.d.ts",
+      "default": "./dist/navigate.js"
+    }
+  },
+  "files": [
+    "dist",
+    "scripts",
+    "README.md",
+    "LICENSE",
+    "NOTICE.md",
+    "SECURITY.md",
+    "CHANGELOG.md",
+    "skills"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test test/unit.test.mjs test/transports.test.mjs test/http.test.mjs",
+    "test:e2e": "node --test test/e2e.test.mjs",
+    "postinstall": "node scripts/ensure-chromium.mjs"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "openai",
+    "decisions-api",
+    "browser",
+    "agent",
+    "playwright",
+    "automation"
+  ],
+  "dependencies": {
+    "@ai-sdk/anthropic": "^4.0.72",
+    "@ai-sdk/google": "^4.0.88",
+    "@ai-sdk/openai": "^4.0.84",
+    "@ai-sdk/openai-compatible": "^3.0.63",
+    "@modelcontextprotocol/node": "^2.1.1",
+    "@modelcontextprotocol/server": "^2.3.1",
+    "ai": "^7.0.128",
+    "playwright": "^1.55.0",
+    "turndown": "^7.2.0",
+    "turndown-plugin-gfm": "^1.0.2",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "^2.3.1",
+    "@types/node": "^22.0.0",
+    "@types/turndown": "^5.0.5",
+    "typescript": "^7.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
